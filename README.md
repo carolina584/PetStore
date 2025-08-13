@@ -1,21 +1,29 @@
 # PetStore
 Automatización services rest crear user, update, delete
 
-HALLAZGOS Y CONCLUSIONES DEL EJERCICIO
--
+EJERCICIO: Pruebas de API en PetStore con Karate
 
-1.  Diseño de las pruebas (Flujo CRUD)
-    El ejercicio requería probar un flujo completo (Crear, Buscar, Actualizar, Eliminar) en la API de PetStore. Se determinó que la forma más robusta y confiable de hacerlo en Karate es agrupar todos los pasos en un único 'Scenario'.
+Este proyecto contiene un conjunto de pruebas automatizadas para el flujo completo de un usuario (CRUD) en la API de PetStore, utilizando el framework de automatización Karate.
 
-    - El uso de múltiples escenarios separados para cada paso (Crear, Buscar, etc.) no funciona para flujos dependientes.
-    - La ejecución de escenarios separados causaba errores de "User not found" porque cada escenario se ejecutaba de forma aislada, y la información del usuario creado en el primer escenario no persistía para los siguientes.
+---
 
-3.  Manejo de variables
-    Para evitar conflictos con usuarios que ya existían en la API, se implementó una estrategia de datos dinámicos.
-    - El nombre de usuario se generó usando la marca de tiempo de Java (`java.lang.System.currentTimeMillis()`) para asegurar que fuera único en cada ejecución.
-    - Se externalizó la información del usuario a un archivo `user.json` para mantener el archivo de pruebas limpio y reutilizable, usando el comando `read('user.json')`.
-    - Se utilizó el comando `set` para modificar el mismo objeto JSON del usuario durante la prueba, por ejemplo, para actualizar el `firstName` y el `email` antes de la llamada PUT.
+INSTRUCCIONES DE EJECUCIÓN
 
-4.  Sincronización
-    Se identificaron problemas de sincronización donde la API respondía exitosamente a una solicitud (por ejemplo, POST), pero el usuario no estaba disponible de inmediato para la siguiente solicitud (GET).
-    - Para solucionar esto, se utilizó una pausa forzada de 3 segundos (`* java.lang.Thread.sleep(9000)`) después de las operaciones de escritura (POST y PUT). Esta es una solución funcional para las dependencias del proyecto.
+1.  Requisitos
+    - Java Development Kit (JDK)
+    - Gradle
+    - Un IDE de desarrollo (como IntelliJ IDEA o Visual Studio Code)
+
+2.  Estructura del Proyecto
+    - `src/test/java/PetStoreRunner.java`: Archivo de configuración principal para ejecutar los tests de Karate con JUnit 5.
+    - `src/test/java/resources/petstore.feature`: Contiene el test Gherkin con el flujo completo (CRUD).
+    - `src/test/java/resources/user.json`: Archivo con los datos de entrada para la creación del usuario.
+    - `build.gradle`: Archivo de configuración de Gradle para gestionar las dependencias.
+
+3.  Instrucciones para la ejecución
+    - Asegúrate de estar en la carpeta raíz del proyecto.
+    - Ejecuta el siguiente comando en la terminal para correr los tests:
+      
+      ./gradlew test
+      
+    - Los resultados del test se mostrarán en la terminal y se generará un reporte HTML en la carpeta `build/karate-reports`.
