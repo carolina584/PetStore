@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "22e5dba8-3678-43df-a035-3c7dc7fbc13e",
+		"name": "PruebasPetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37560759",
+		"_collection_link": "https://interstellar-firefly-433368.postman.co/workspace/My-Workspace~13955712-6c85-43a1-8984-a0176ec52b83/collection/37560759-22e5dba8-3678-43df-a035-3c7dc7fbc13e?action=share&source=collection_link&creator=37560759"
+	},
+	"item": [
+		{
+			"name": "consultar user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/karate_user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"karate_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 100,\n  \"username\": \"karate_user\",\n  \"firstName\": \"Karate\",\n  \"lastName\": \"User\",\n  \"email\": \"karate@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"333-123-4567\",\n  \"userStatus\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar name y correo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 100,\n  \"username\": \"karate_user\",\n  \"firstName\": \"KarateActualizado\",\n  \"lastName\": \"User\",\n  \"email\": \"actualizado@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"555-123-4567\",\n  \"userStatus\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/karate_user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"karate_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar name actualizado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/karate_user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"karate_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/karate_user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"karate_user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

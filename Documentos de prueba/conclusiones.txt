@@ -1,0 +1,17 @@
+HALLAZGOS Y CONCLUSIONES DEL EJERCICIO:
+
+1.  Diseño de las pruebas (Flujo CRUD)
+    El ejercicio requería probar un flujo completo (Crear, Buscar, Actualizar, Eliminar) en la API de PetStore. Se determinó que la forma más robusta y confiable de hacerlo en Karate es agrupar todos los pasos en un único 'Scenario'.
+
+    - El uso de múltiples escenarios separados para cada paso (Crear, Buscar, etc.) no funciona para flujos dependientes.
+    - La ejecución de escenarios separados causaba errores de "User not found" porque cada escenario se ejecutaba de forma aislada, y la información del usuario creado en el primer escenario no persistía para los siguientes.
+
+2.  Manejo de variables
+    Para evitar conflictos con usuarios que ya existían en la API, se implementó una estrategia de datos dinámicos.
+    - El nombre de usuario se generó usando la marca de tiempo de Java (`java.lang.System.currentTimeMillis()`) para asegurar que fuera único en cada ejecución.
+    - Se externalizó la información del usuario a un archivo `user.json` para mantener el archivo de pruebas limpio y reutilizable, usando el comando `read('user.json')`.
+    - Se utilizó el comando `set` para modificar el mismo objeto JSON del usuario durante la prueba, por ejemplo, para actualizar el `firstName` y el `email` antes de la llamada PUT.
+
+3.  Sincronización
+    Se identificaron problemas de sincronización donde la API respondía exitosamente a una solicitud (por ejemplo, POST), pero el usuario no estaba disponible de inmediato para la siguiente solicitud (GET).
+    - Para solucionar esto, se utilizó una pausa forzada de 3 segundos (`java.lang.Thread.sleep(3000)`) después de las operaciones de escritura (POST y PUT). Esta es una solución funcional para las dependencias del proyecto.
