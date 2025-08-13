@@ -10,8 +10,8 @@ Este proyecto contiene un conjunto de pruebas automatizadas para el flujo comple
 INSTRUCCIONES DE EJECUCIÓN
 
 1.  Requisitos
-    - Java Development Kit (JDK)
-    - Gradle
+    - Java Development Kit (JDK) 11.0.18
+    - Gradle: creación proyecto en IDE o con comandos (gradle init)
     - Un IDE de desarrollo (como IntelliJ IDEA o Visual Studio Code)
 
 2.  Estructura del Proyecto
